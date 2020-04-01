@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'json'
+require 'shellwords'
 
 # terraform plan -out=./plan-result
 # terraform show -json plan-result > plan-result.json
@@ -84,5 +85,5 @@ end
 
 # in unix manner, output under tsv
 infer_move().each do |dr, cr|
-  print dr, "\t", cr, "\n"
+  print Shellwords.escape(dr), "\t", Shellwords.escape(cr), "\n"
 end
